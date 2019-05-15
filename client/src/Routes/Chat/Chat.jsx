@@ -2,27 +2,33 @@ import React, { Component } from "react";
 import { Input, Button, Layout } from "antd";
 import styled from "styled-components";
 import io from "socket.io-client";
+import CommentCard from "../../Components/Comment";
 
 const socket = io.connect("http://localhost:5000");
 
 const { Footer } = Layout;
 
 export default class Chat extends Component {
-  constructor() {
-    super();
-    this.state = { message: "", dialogs: [] };
+  constructor(props) {
+    super(props);
+    this.state = {
+      message: "",
+      comments: [],
+      nickname: props.location.state.nickname
+    };
   }
 
   componentDidMount() {
-    socket.on("chat message", msg => {
+    socket.on("chat message", ({ message, nickname }) => {
       this.setState({
-        dialogs: [...this.state.dialogs, msg]
+        comments: [...this.state.comments, { nickname, message }]
       });
     });
   }
 
   handleSubmitMessage() {
-    socket.emit("chat message", this.state.message);
+    const { nickname, message } = this.state;
+    socket.emit("chat message", { nickname, message });
     this.setState({ message: "" });
   }
 
@@ -32,15 +38,23 @@ export default class Chat extends Component {
     });
   }
 
-  renderDialogs() {
-    const { dialogs } = this.state;
-    return dialogs.map((msg, idx) => <p key={idx}>{msg}</p>);
+  renderComments() {
+    const { comments } = this.state;
+    return comments.map(({ message, nickname }, idx) => (
+      <CommentCard
+        key={idx}
+        nickname={nickname}
+        align={this.state.nickname === nickname ? "flex-end" : "flex-start"}
+      >
+        {message}
+      </CommentCard>
+    ));
   }
 
   render() {
     return (
       <Container>
-        <ChatBox>{this.renderDialogs()}</ChatBox>
+        <ChatBox align={"flex-start"}>{this.renderComments()}</ChatBox>
         <InputBox>
           <Input
             value={this.state.message}
@@ -65,6 +79,7 @@ const Container = styled.div`
 const ChatBox = styled.div`
   display: flex;
   flex-direction: column;
+  width: 80%;
 `;
 
 const InputBox = styled(Footer)`

@@ -29,7 +29,14 @@ export default class Landing extends Component {
             allowClear
             onChange={this.onTextChange}
           />
-          <Link to="/chat">
+          <Link
+            to={{
+              pathname: "/chat",
+              state: {
+                nickname: this.state.nickname
+              }
+            }}
+          >
             <StyledButton>Start Chat!</StyledButton>
           </Link>
         </InputBox>
