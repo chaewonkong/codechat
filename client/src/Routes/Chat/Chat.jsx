@@ -8,7 +8,6 @@ import Highlight from "react-highlight.js";
 const socket = io.connect("http://localhost:5000");
 
 const { Footer } = Layout;
-const { TextArea } = Input;
 
 export default class Chat extends Component {
   constructor(props) {
@@ -70,11 +69,7 @@ export default class Chat extends Component {
                 <p>{block}</p>
               ))}
             </Highlight>
-            <CodeInput
-              onPressEnter={e => this.handleCodeInput(e)}
-              allowClear
-              autosize
-            />
+            <CodeInput onPressEnter={e => this.handleCodeInput(e)} allowclear />
           </CodeBox>
           <ChatBox align={"flex-start"}>{this.renderComments()}</ChatBox>
         </ConA>
@@ -121,7 +116,7 @@ const ChatBox = styled.div`
   flex: 1;
 `;
 
-const CodeInput = styled(TextArea)`
+const CodeInput = styled(Input)`
   background: #232323;
   color: white;
   border: none;
