@@ -3,10 +3,12 @@ import { Input, Button, Layout } from "antd";
 import styled from "styled-components";
 import io from "socket.io-client";
 import CommentCard from "../../Components/Comment";
+import Highlight from "react-highlight.js";
 
 const socket = io.connect("http://localhost:5000");
 
 const { Footer } = Layout;
+const { TextArea } = Input;
 
 export default class Chat extends Component {
   constructor(props) {
@@ -14,7 +16,8 @@ export default class Chat extends Component {
     this.state = {
       message: "",
       comments: [],
-      nickname: props.location.state.nickname
+      nickname: props.location.state.nickname,
+      code: [`const highlight = () => console.log("it works")`]
     };
   }
 
@@ -38,6 +41,12 @@ export default class Chat extends Component {
     });
   }
 
+  handleCodeInput(e) {
+    this.setState({
+      code: [...this.state.code, e.target.value]
+    });
+  }
+
   renderComments() {
     const { comments } = this.state;
     return comments.map(({ message, nickname }, idx) => (
@@ -54,7 +63,21 @@ export default class Chat extends Component {
   render() {
     return (
       <Container>
-        <ChatBox align={"flex-start"}>{this.renderComments()}</ChatBox>
+        <ConA>
+          <CodeBox>
+            <Highlight language="javascript">
+              {this.state.code.map(block => (
+                <p>{block}</p>
+              ))}
+            </Highlight>
+            <CodeInput
+              onPressEnter={e => this.handleCodeInput(e)}
+              allowClear
+              autosize
+            />
+          </CodeBox>
+          <ChatBox align={"flex-start"}>{this.renderComments()}</ChatBox>
+        </ConA>
         <InputBox>
           <Input
             value={this.state.message}
@@ -74,12 +97,36 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+  height: 100%;
+`;
+
+const ConA = styled.div`
+  display: flex;
+  width: 100%;
+  flex: 1;
+`;
+
+const CodeBox = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  background: #232323;
 `;
 
 const ChatBox = styled.div`
   display: flex;
   flex-direction: column;
-  width: 80%;
+  flex: 1;
+`;
+
+const CodeInput = styled(TextArea)`
+  background: #232323;
+  color: white;
+  border: none;
+  margin: none;
+  border-radius: 0;
 `;
 
 const InputBox = styled(Footer)`
