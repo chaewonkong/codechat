@@ -3,7 +3,10 @@ import { Input, Button, Layout } from "antd";
 import styled from "styled-components";
 import io from "socket.io-client";
 import CommentCard from "../../Components/Comment";
-import Highlight from "react-highlight.js";
+import Editor from "react-simple-code-editor";
+import { highlight, languages } from "prismjs/components/prism-core";
+import "prismjs/components/prism-clike";
+import "prismjs/components/prism-javascript";
 
 const socket = io.connect("http://localhost:5000");
 
@@ -16,7 +19,7 @@ export default class Chat extends Component {
       message: "",
       comments: [],
       nickname: props.location.state.nickname,
-      code: [`const highlight = () => console.log("it works")`]
+      code: ""
     };
   }
 
@@ -64,12 +67,16 @@ export default class Chat extends Component {
       <Container>
         <ConA>
           <CodeBox>
-            <Highlight language="javascript">
-              {this.state.code.map(block => (
-                <p>{block}</p>
-              ))}
-            </Highlight>
-            <CodeInput onPressEnter={e => this.handleCodeInput(e)} allowclear />
+            <Editor
+              value={this.state.code}
+              onValueChange={code => this.setState({ code })}
+              highlight={code => highlight(code, languages.js)}
+              padding={14}
+              style={{
+                fontFamily: '"Fira code", "Fira Mono", monospace',
+                fontSize: 16
+              }}
+            />
           </CodeBox>
           <ChatBox align={"flex-start"}>{this.renderComments()}</ChatBox>
         </ConA>
@@ -107,21 +114,13 @@ const CodeBox = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
-  background: #232323;
+  background: rgb(253, 246, 227);
 `;
 
 const ChatBox = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
-`;
-
-const CodeInput = styled(Input)`
-  background: #232323;
-  color: white;
-  border: none;
-  margin: none;
-  border-radius: 0;
 `;
 
 const InputBox = styled(Footer)`
