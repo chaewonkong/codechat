@@ -29,6 +29,9 @@ export default class Chat extends Component {
         comments: [...this.state.comments, { nickname, message }]
       });
     });
+    socket.on("code", ({ code, nickname }) => {
+      this.setState({ code });
+    });
   }
 
   handleSubmitMessage() {
@@ -43,10 +46,12 @@ export default class Chat extends Component {
     });
   }
 
-  handleCodeInput(e) {
-    this.setState({
-      code: [...this.state.code, e.target.value]
-    });
+  handleCodeInput({ code }) {
+    const { nickname } = this.state;
+    // this.setState({
+    //   code
+    // });
+    socket.emit("code", { code, nickname });
   }
 
   renderComments() {
@@ -69,12 +74,13 @@ export default class Chat extends Component {
           <CodeBox>
             <Editor
               value={this.state.code}
-              onValueChange={code => this.setState({ code })}
+              onValueChange={code => this.handleCodeInput({ code })}
               highlight={code => highlight(code, languages.js)}
               padding={14}
               style={{
                 fontFamily: '"Fira code", "Fira Mono", monospace',
-                fontSize: 16
+                fontSize: 16,
+                height: "100%"
               }}
             />
           </CodeBox>

@@ -20,6 +20,10 @@ io.on("connection", socket => {
   socket.on("chat message", ({ nickname, message }) => {
     io.emit("chat message", { nickname, message });
   });
+
+  socket.on("code", ({ nickname, code }) => {
+    io.emit("code", { nickname, code });
+  });
   socket.on("disconnect", () => console.log(`User disconnected`));
 });
 
