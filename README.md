@@ -3,7 +3,18 @@
 ## Description
 
 ### 🙋‍ Exchange code reviews by chatting while reading codes at the same time
-![code-editing](./ezgif.com-gif-maker.gif)
+![code-editing](./client/public/video.gif)
+<br />Demo Video
+<br /><br />
+![code-editing](./client/public/shot1.png)
+<br /> Landing Page
+<br /><br />
+![code-editing](./client/public/shot2.png)
+<br /> Chatting / Code Editing Page
+<br /><br />
+![code-editing](./client/public/shot3.png)
+<br /><br />
+### See demo *[here](https://codechat.netlify.com)*
 
 ## Dev stack
 - React
@@ -13,20 +24,18 @@
 
 ## Features
 - [x] New User
-- [x] Get User Number
-- [x] Get New Message
+- [x] Get User Nickname
+- [x] Get New Messages
 - [x] User Connection
-- [ ] User Disconnection
-- [ ] User Reconnection
+- [x] Live Code Editing
 
 ## Getting Started
 
 ### Prerequisites
-| Require                              | Description                                                               |
-| ------------------------------------ | ------------------------------------------------------------------------- |
-| [Git](https://git-scm.com/)          | We follow the [GitHub Flow](https://guides.github.com/introduction/flow/) |
-| [Node.js](nodejs.org)                | 10.10 LTS or above                                                        |
-| [Yarn](https://yarnpkg.com/lang/en/) | Recommend [stable version](https://github.com/yarnpkg/yarn/releases)      |
+| Require                              | Description                                                          |
+| ------------------------------------ | -------------------------------------------------------------------- |
+| [Node.js](nodejs.org)                | 10.10 LTS or above                                                   |
+| [Yarn](https://yarnpkg.com/lang/en/) | Recommend [stable version](https://github.com/yarnpkg/yarn/releases) |
 
 #### Install Node, Yarn
 
@@ -72,10 +81,6 @@ $ yarn test
 ```bash
 $ yarn start
 ```
-## References
-This project was inspired by this site
-- https://stresscompany.net/
-
 ## License
 
 MIT
