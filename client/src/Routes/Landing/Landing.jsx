@@ -31,7 +31,7 @@ export default class Landing extends Component {
           />
           <Link
             to={{
-              pathname: "/chat",
+              pathname: "/list",
               state: {
                 nickname: this.state.nickname
               }
