@@ -85,7 +85,7 @@ export default class Chat extends Component {
               }}
             />
           </CodeBox>
-          <ChatBox align={"flex-start"}>{this.renderComments()}</ChatBox>
+          <ChatBox>{this.renderComments()}</ChatBox>
         </ConA>
         <InputBox>
           <Input
@@ -128,6 +128,7 @@ const ChatBox = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
+  padding-bottom: 4rem;
 `;
 
 const InputBox = styled(Footer)`
