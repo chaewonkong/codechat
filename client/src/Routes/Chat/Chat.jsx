@@ -80,7 +80,8 @@ export default class Chat extends Component {
               style={{
                 fontFamily: '"Fira code", "Fira Mono", monospace',
                 fontSize: 16,
-                height: "100%"
+                height: "100%",
+                lineHeight: "1rem"
               }}
             />
           </CodeBox>
