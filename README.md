@@ -3,7 +3,7 @@
 ## Description
 
 ### 🙋‍ Exchange code reviews by chatting while reading codes at the same time
-![code-editing]("./ezgif.com-gif-maker.gif")
+![code-editing](./ezgif.com-gif-maker.gif)
 
 ## Dev stack
 - React
