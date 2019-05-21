@@ -5,15 +5,7 @@
 ### 🙋‍ Exchange code reviews by chatting while reading codes at the same time
 ![code-editing](./client/public/video.gif)
 <br />Demo Video
-<br /><br />
-![code-editing](./client/public/shot1.png)
-<br /> Landing Page
-<br /><br />
-![code-editing](./client/public/shot2.png)
-<br /> Chatting / Code Editing Page
-<br /><br />
-![code-editing](./client/public/shot3.png)
-<br /><br />
+
 ### See demo *[here](https://codechat.netlify.com)*
 
 ## Dev stack
