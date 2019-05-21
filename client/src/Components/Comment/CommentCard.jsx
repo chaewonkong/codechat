@@ -10,19 +10,22 @@ class CommentCard extends Component {
     this.state = { comment: children, nickname };
   }
   render() {
+    console.log(this.props);
     const { nickname, comment } = this.state;
     return (
       <CommentContainer
         // actions={actions}
         align={this.props.align}
-        author={<p>{nickname}</p>}
+        author={this.props.align === "flex-start" ? <p>{nickname}</p> : null}
         avatar={
-          <Avatar
-            src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-            alt="Han Solo"
-          />
+          this.props.align === "flex-start" ? (
+            <Avatar
+              src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+              alt="Han Solo"
+            />
+          ) : null
         }
-        content={<p>{comment}</p>}
+        content={<Text align={this.props.align}>{comment}</Text>}
         datetime={
           <Tooltip title={moment().format("YYYY-MM-DD HH:mm:ss")}>
             <span>{moment().fromNow()}</span>
@@ -36,6 +39,18 @@ class CommentCard extends Component {
 const CommentContainer = styled(Comment)`
   display: flex;
   justify-content: ${props => props.align};
+`;
+
+const Text = styled.p`
+  display: flex;
+  flex-direction: row;
+  justify-content: ${props => props.align};
+  max-width: 10rem;
+  background: #eee;
+  border-radius: 1rem;
+  padding: 1rem;
+  margin: 1rem;
+  line-height: 1rem;
 `;
 
 export default CommentCard;
