@@ -5,6 +5,7 @@
   "license": "MIT",
   "scripts": {
     "server": "nodemon server/index.js",
+    "build": "npm run build --prefix client",
     "client": "npm run start --prefix client",
     "dev": "concurrently \"yarn server\" \"yarn client\""
   },
