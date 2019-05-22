@@ -8,7 +8,9 @@ import { highlight, languages } from "prismjs/components/prism-core";
 import "prismjs/components/prism-clike";
 import "prismjs/components/prism-javascript";
 
-const socket = io.connect(window.location.hostname);
+let path = window.location.hostname;
+if (window.location.hostname.match("localhost")) path = "http://localhost:5000";
+const socket = io.connect(path);
 
 const { Footer } = Layout;
 

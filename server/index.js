@@ -5,16 +5,13 @@ const io = require("socket.io")(server);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../client/build")));
-} else {
-  app.use("/public", express.static("../client/public"));
 }
 
 // app.use("/public", express.static("../client/public"));
 
-// app.get("/", (req, res) => {
-//   // res.sendFile(path.join(__dirname, "client/build", "index.html"));
-
-// });
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "../client/build", "index.html"));
+});
 
 io.on("connection", socket => {
   const { id } = socket.client;
