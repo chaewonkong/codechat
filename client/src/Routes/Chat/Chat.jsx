@@ -10,6 +10,7 @@ import "prismjs/components/prism-javascript";
 
 let path = window.location.hostname;
 if (window.location.hostname.match("localhost")) path = "http://localhost:5000";
+
 const socket = io.connect(path);
 
 const { Footer } = Layout;
