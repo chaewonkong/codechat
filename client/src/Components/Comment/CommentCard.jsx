@@ -10,7 +10,6 @@ class CommentCard extends Component {
     this.state = { comment: children, nickname };
   }
   render() {
-    console.log(this.props);
     const { nickname, comment } = this.state;
     return (
       <CommentContainer
