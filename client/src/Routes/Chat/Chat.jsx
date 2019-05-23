@@ -2,18 +2,17 @@ import React, { Component } from "react";
 import { Input, Button, Layout } from "antd";
 import styled from "styled-components";
 import openSocket from "socket.io-client";
-// import io from "socket.io-client";
 import CommentCard from "../../Components/Comment";
 import Editor from "react-simple-code-editor";
 import { highlight, languages } from "prismjs/components/prism-core";
 import "prismjs/components/prism-clike";
 import "prismjs/components/prism-javascript";
 
-let path = "https://codechats.herokuapp.com/";
+let path = "http://my-env.c6x2ggbux3.ap-northeast-2.elasticbeanstalk.com/";
 if (path.match("localhost")) path = "http://localhost:5000";
 
 // const socket = io.connect(path);
-const socket = openSocket(path);
+const socket = io.connect(path);
 
 const { Footer } = Layout;
 
