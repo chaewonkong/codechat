@@ -1,17 +1,19 @@
 import React, { Component } from "react";
 import { Input, Button, Layout } from "antd";
 import styled from "styled-components";
-import io from "socket.io-client";
+import openSocket from "socket.io-client";
+// import io from "socket.io-client";
 import CommentCard from "../../Components/Comment";
 import Editor from "react-simple-code-editor";
 import { highlight, languages } from "prismjs/components/prism-core";
 import "prismjs/components/prism-clike";
 import "prismjs/components/prism-javascript";
 
-let path = window.location.hostname;
-if (window.location.hostname.match("localhost")) path = "http://localhost:5000";
+let path = window.location.toString();
+if (path.match("localhost")) path = "http://localhost:5000";
 
-const socket = io.connect(path);
+// const socket = io.connect(path);
+const socket = openSocket(path);
 
 const { Footer } = Layout;
 
