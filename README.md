@@ -6,7 +6,7 @@
 ![code-editing](./client/public/video.gif)
 <br />Demo Video
 
-### See demo *[here](https://codechat.netlify.com)*
+### See demo *[here](https://codechats.firebaseapp.com/)*
 
 ## Dev stack
 - React
@@ -31,7 +31,7 @@
 
 #### Install project
 ```bash
-$ cd server && yarn install
+$ cd server && npm install
 $ cd ../client && yarn install
 ```
 #### Build project
