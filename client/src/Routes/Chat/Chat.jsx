@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Input, Button, Layout } from "antd";
 import styled from "styled-components";
-import openSocket from "socket.io-client";
 import CommentCard from "../../Components/Comment";
 import Editor from "react-simple-code-editor";
 import { highlight, languages } from "prismjs/components/prism-core";
