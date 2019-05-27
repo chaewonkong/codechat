@@ -3,6 +3,7 @@ import { Input, Button, Layout } from "antd";
 import styled from "styled-components";
 import CommentCard from "../../Components/Comment";
 import Editor from "react-simple-code-editor";
+import io from "socket.io-client";
 import { highlight, languages } from "prismjs/components/prism-core";
 import "prismjs/components/prism-clike";
 import "prismjs/components/prism-javascript";
@@ -10,7 +11,6 @@ import "prismjs/components/prism-javascript";
 let path = "http://my-env.c6x2ggbux3.ap-northeast-2.elasticbeanstalk.com/";
 if (path.match("localhost")) path = "http://localhost:5000";
 
-// const socket = io.connect(path);
 const socket = io.connect(path);
 
 const { Footer } = Layout;

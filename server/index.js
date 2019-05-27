@@ -2,9 +2,14 @@ const express = require("express");
 const app = express();
 const server = require("http").Server(app);
 const io = require("socket.io")(server);
+const path = require("path");
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "../client/build")));
+}
 
 app.get("/", (req, res) => {
-  res.send("ok");
+  res.sendFile(path.join(__dirname, "../client/build", "index.html"));
 });
 
 io.on("connection", socket => {
