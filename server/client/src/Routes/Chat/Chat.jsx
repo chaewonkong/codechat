@@ -11,7 +11,7 @@ import "prismjs/components/prism-javascript";
 let path = "http://my-env.c6x2ggbux3.ap-northeast-2.elasticbeanstalk.com/";
 if (path.match("localhost")) path = "http://localhost:5000";
 
-const socket = io.connect(path);
+const socket = io.connect(path, { transports: ["polling"] });
 
 const { Footer } = Layout;
 
